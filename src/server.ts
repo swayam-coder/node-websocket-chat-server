@@ -3,6 +3,9 @@ import cors from "cors";
 import { Server } from "socket.io"
 import { createServer } from "http";
 import socket from "./socket";
+import dotenv from "dotenv"
+
+dotenv.config()
 
 const app = express();
 
@@ -17,7 +20,7 @@ const httpServer = createServer(app)
 
 const io = new Server(httpServer, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: process.env.CLIENT_PORT,
         methods: ["GET", "POST"],
         credentials: true
     }
